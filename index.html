@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMB Tech | Automação Inteligente para seu Negócio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --azul-escuro: #003366;
+            --azul-claro: #0099FF;
+            --cinza-claro: #f8f9fa;
+            --branco: #ffffff;
+            --texto-escuro: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--texto-escuro);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+		
+		/* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+		
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 15px 30px;
+			font-size: 18px;
+			font-weight: 600;
+			background: linear-gradient(90deg, #ff8c00, #ff4500); /* Nova cor vibrante */
+			color: white;
+			border-radius: 50px;
+			text-decoration: none;
+			text-align: center;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			cursor: pointer;
+			border: none;
+			text-shadow: none;
+		}
+		
+		.btn:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 5px 5px rgba(255, 140, 0, 0.5);
+		}
+        
+        /* Header */
+        header {
+            background-color: var(--branco);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+            background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--texto-escuro);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--azul-claro);
+        }
+        
+        .hero {
+			position: relative;
+			padding: 150px 0 100px;
+			background: url('hero-ai.webp') no-repeat center center;
+			background-size: cover;
+			background-attachment: fixed;
+			color: white; /* Garante que todo o texto fique branco */
+			text-align: center; /* Centraliza o texto */
+		}
+		
+		.hero::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.6); /* Aumenta a opacidade do fundo escuro para contraste */
+			z-index: 1;
+		}
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+			animation: fadeInUp 1s ease-out;
+        }       
+
+		.hero-text {
+			position: relative;
+			z-index: 2; /* Garante que o texto fique acima do overlay escuro */
+			max-width: 800px;
+			margin: 0 auto;
+		}
+		
+		.hero-text h1 {
+			font-size: 40px;
+			font-weight: 700;
+			color: white; /* Texto branco */
+			text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* Adiciona sombra para melhor contraste */
+			margin-bottom: 20px;
+		}
+		
+		.hero-text p {
+			font-size: 18px;
+			color: #f1f1f1; /* Cinza claro para suavizar a leitura */
+			text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+			margin-bottom: 30px;
+		}
+        
+        /* Benefícios */
+        .benefits {
+            padding: 100px 0;
+            background-color: var(--cinza-claro);
+        }
+        
+		.section-title {
+			font-size: 2.5rem;
+			color: #003366;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		
+		.section-subtitle {
+			font-size: 1.1rem;
+			color: #666;
+			max-width: 700px;
+			margin: 0 auto 50px; /* Adiciona espaço abaixo */
+			text-align: center;
+		}
+        
+		.benefits-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 30px;
+		}
+
+        
+		.benefit-card {
+			background: white;
+			padding: 40px 30px;
+			border-radius: 10px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+			transition: transform 0.3s;
+			text-align: center;
+			position: relative;
+			overflow: hidden;
+			min-height: 320px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+		.benefit-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 5px;
+			background: linear-gradient(90deg, #003366, #0099FF);
+		}
+        
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0, 153, 255, 0.1);
+            color: #0099FF;
+            font-size: 30px;
+        }
+        
+        .benefit-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #003366;
+        }
+        
+        /* Prova Social */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--branco);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--cinza-claro);
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        .testimonial-company {
+            color: #666;
+        }
+        
+        .case-study {
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro));
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .case-study h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        /* Como Funciona */
+        .how-it-works {
+            padding: 100px 0;
+            background-color: var(--cinza-claro);
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .steps-container::before {
+            content: "";
+            position: absolute;
+            top: 50px;
+            left: 60px;
+            right: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro));
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            width: 200px;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .step h3 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .step p {
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .cta-middle {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 100px 0;
+            background-color: var(--branco);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background-color: var(--cinza-claro);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 1000px;
+        }
+        
+        /* CTA Final */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro));
+            color: white;
+        }
+        
+        .cta-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .cta-text {
+            flex: 1;
+        }
+        
+        .cta-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-form {
+            flex: 1;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--texto-escuro);
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+		.whatsapp-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px; /* Mantém espaçamento entre ícone e texto */
+			background-color: #25D366;			
+			font-size: 14px !important;
+		}
+        
+        /* Footer */
+        footer {
+            background-color: var(--azul-escuro);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            margin-right: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--azul-claro);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #ccc;
+        }
+		
+		.button-group {
+			display: flex;
+			gap: 15px; /* Espaçamento entre os botões */
+			justify-content: center;
+		}
+
+        
+        /* Responsivo */
+        @media (max-width: 1024px) {
+            .hero-content, .cta-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+            }
+            
+            .steps-container::before {
+                top: 0;
+                bottom: 0;
+                right: auto;
+                left: 50%;
+                width: 2px;
+                height: auto;
+                transform: translateX(-50%);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-text h1 {
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">LMB TECH</div>
+            <nav class="nav-menu">
+                <a href="#benefits">Benefícios</a>
+                <a href="#how-it-works">Como Funciona</a>
+                <a href="#testimonials">Clientes</a>
+                <a href="#faq">FAQ</a>
+                <!-- <a href="#contact" class="btn">Fale Conosco</a> -->
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+	<section class="hero">
+		<div class="container hero-content">
+			<div class="hero-text">
+				<h1>Automação Inteligente para Redução de Custos e Aumento da Eficiência</h1>
+				<p>Soluções personalizadas de RPA e Chatbots com IA para otimizar seus processos e transformar seu atendimento.</p>
+				<a href="#contact" class="btn">Solicitar uma Demonstração</a>
+			</div>
+		</div>
+	</section>
+
+	
+	    <!-- Seção de Benefícios -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Benefícios que Transformam seu Negócio</h2>
+                <p class="section-subtitle">Conheça as vantagens de implementar nossas soluções de automação inteligente na sua empresa</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="benefit-title">Redução de custos operacionais</h3>
+                    <p>Automatize tarefas repetitivas e reduza despesas com processos manuais, aumentando a eficiência do seu negócio.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="benefit-title">Atendimento automatizado 24/7</h3>
+                    <p>Ofereça suporte contínuo aos seus clientes com chatbots inteligentes que nunca tiram folga</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="benefit-title">Aumento da produtividade</h3>
+                    <p>Libere sua equipe de tarefas repetitivas para que possam focar no que realmente agrega valor ao seu negócio.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 class="benefit-title">Integração fácil com sistemas existentes</h3>
+                    <p>Nossas soluções se adaptam perfeitamente à sua infraestrutura atual sem mudanças complexas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Prova Social -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">O que nossos clientes dizem</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "A implementação dos chatbots da LMB Tech transformou completamente nosso atendimento ao cliente. Reduzimos o tempo de espera em 65% e aumentamos a satisfação dos clientes."
+                    </div>
+                    <div class="testimonial-author">Ana Carvalho</div>
+                    <div class="testimonial-company">Diretora de Operações, Fintech SA</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Conseguimos automatizar processos que antes demandavam horas de trabalho manual. O ROI foi impressionante, com retorno do investimento em apenas 4 meses."
+                    </div>
+                    <div class="testimonial-author">Ricardo Souza</div>
+                    <div class="testimonial-company">CTO, Empresa Logística</div>
+                </div>
+                <!--<div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "A personalização das soluções da LMB Tech foi o diferencial. Criaram exatamente o que precisávamos, com suporte contínuo e atualizações constantes."
+                    </div>
+                    <div class="testimonial-author">Camila Mendes</div>
+                    <div class="testimonial-company">Head de Inovação, Rede Varejo</div>
+                </div>-->
+            </div>
+            
+            <div class="case-study">
+                <h3>Caso de Sucesso: Empresa X reduziu 40% do tempo de atendimento com IA</h3>
+                <p>Implementamos uma solução de chatbot com IA que permitiu atender 3x mais clientes, reduzir custos operacionais e aumentar a satisfação dos usuários em 56%.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Como Funciona -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona?</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Diagnóstico</h3>
+                    <p>Identificamos os desafios do seu negócio.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Desenvolvimento</h3>
+                    <p>Criamos uma solução sob medida.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Implementação</h3>
+                    <p>Integração e treinamento da equipe.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Suporte contínuo</h3>
+                    <p>Ajustes e otimizações constantes.</p>
+                </div>
+            </div>
+            
+            <div class="cta-middle">
+                <a href="#contact" class="btn">Fale com um especialista agora</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Quanto tempo leva para implementar uma solução de automação?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        O tempo de implementação varia de acordo com a complexidade do projeto. Soluções simples podem ser implementadas em 2-4 semanas, enquanto projetos mais complexos podem levar de 2-3 meses. Realizamos uma análise detalhada no início do projeto para fornecer um cronograma preciso.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        É necessário ter conhecimento técnico para utilizar as soluções?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Não! Nossas soluções são desenvolvidas pensando na experiência do usuário. Oferecemos treinamento completo para sua equipe e interfaces intuitivas que não exigem conhecimento técnico avançado para operação diária.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Como é calculado o retorno sobre investimento (ROI)?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Calculamos o ROI com base na redução de custos operacionais, aumento de produtividade e eficiência dos processos. Na fase de diagnóstico, identificamos indicadores específicos para seu negócio que serão monitorados para demonstrar o retorno do investimento.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        As soluções são personalizáveis para diferentes setores?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sim! Trabalhamos com diversos setores como finanças, varejo, saúde, logística e outros. Nossas soluções são totalmente personalizadas para atender às necessidades específicas de cada setor e empresa.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+    
+    <!-- CTA Final -->
+    <section class="cta-section" id="contact">
+        <div class="container cta-container">
+            <div class="cta-text">
+                <h2>Transforme sua empresa com automação inteligente</h2>
+                <p>Entre em contato hoje mesmo e descubra como nossas soluções podem revolucionar seu negócio.</p>
+            </div>
+            
+           <div class="cta-form">
+				<form id="demoForm">
+					<div class="form-group">
+							<label for="name">Nome</label>
+							<input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+						</div>
+				
+						<div class="form-group">
+							<label for="email">E-mail</label>
+							<input type="email" id="email" name="email" placeholder="seu@email.com" required>
+						</div>
+				
+						<div class="form-group">
+							<label for="company">Empresa</label>
+							<input type="text" id="company" name="company" placeholder="Nome da sua empresa">
+					</div>
+			
+					<div class="form-group">
+						<label for="phone">Telefone</label>
+						<input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" required>
+					</div>
+			
+					<div class="button-group">
+						<button type="submit" class="btn whatsapp-btn">Solicitar demonstração</button>
+			
+						<!-- <a href="https://wa.me/5567996298263" target="_blank" class="btn whatsapp-btn"> -->
+							<!-- <i class="fab fa-whatsapp"></i> Falar pelo WhatsApp -->
+						<!-- </a> -->
+						
+						<a href="#" onclick="enviarWhatsApp()" class="btn whatsapp-btn">
+							<i class="fab fa-whatsapp"></i> Falar pelo WhatsApp
+						</a>
+
+					</div>
+			
+					<div id="responseMessage" style="display: none; margin-top: 10px;"></div>
+				</form>
+			</div>	
+
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>LMB Tech</h3>
+                    <p>Soluções personalizadas de automação inteligente para transformar seu negócio.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#how-it-works">Como Funciona</a></li>
+                        <li><a href="#testimonials">Clientes</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li>falecom@lmbtech.com.br</li>
+                        <li>(67) 99629-8263</li>
+						<li>
+							<a href="#" target="_blank">
+								<i class="fa-brands fa-facebook"></i>
+							</a>							
+						</li>
+                        <li>
+							<a href="https://www.instagram.com/lmbtech.ai" target="_blank">
+								<i class="fa-brands fa-instagram"></i>
+							</a>
+						</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 LMB Tech. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+    
+	<script>
+    // Script para FAQs
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentNode;
+            item.classList.toggle('active');
+            
+            const plus = question.querySelector('span');
+            plus.textContent = item.classList.contains('active') ? '-' : '+';
+        });
+    });
+
+    // Script para navegação suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Máscara para o campo de telefone
+    document.getElementById("phone").addEventListener("input", function(event) {
+        let value = event.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+        if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
+
+        if (value.length > 6) {
+            event.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+        } else if (value.length > 2) {
+            event.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+        } else if (value.length > 0) {
+            event.target.value = `(${value}`;
+        }
+    });
+
+    // Script para envio do formulário ao n8n
+    document.getElementById("demoForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Evita recarregar a página
+
+        let rawPhone = document.getElementById("phone").value.replace(/\D/g, ""); // Remove a máscara
+        if (rawPhone.length === 11) {
+            rawPhone = "55" + rawPhone; // Adiciona código do Brasil (55) antes do número
+        }
+
+        const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            company: document.getElementById("company").value,
+            phone: rawPhone // Número formatado com +55
+        };
+
+        try {
+            const response = await fetch("https://n8n.lmb.software/webhook-test/solicitar-demo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                document.getElementById("responseMessage").innerHTML = "Pedido enviado com sucesso!";
+                document.getElementById("responseMessage").style.color = "green";
+                document.getElementById("responseMessage").style.display = "block";
+
+                // Limpa o formulário após o envio bem-sucedido
+                document.getElementById("demoForm").reset();
+            } else {
+                throw new Error("Erro ao enviar.");
+            }
+        } catch (error) {
+            document.getElementById("responseMessage").innerHTML = "Erro ao enviar o pedido!";
+            document.getElementById("responseMessage").style.color = "red";
+            document.getElementById("responseMessage").style.display = "block";
+        }
+    });
+
+    // Função para validar campos e abrir WhatsApp Web
+    function enviarWhatsApp() {
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let company = document.getElementById("company").value.trim();
+        let phone = document.getElementById("phone").value.replace(/\D/g, "");
+
+        // Validação dos campos obrigatórios
+        if (!name || !email || !phone) {
+            alert("Por favor, preencha os campos Nome, E-mail e Telefone antes de continuar.");
+            return;
+        }
+
+        if (phone.length === 11) {
+            phone = "55" + phone; // Adiciona código do Brasil (55)
+        }
+
+        // Criando mensagem para WhatsApp
+        let mensagem = encodeURIComponent(
+            `Olá! Gostaria de solicitar uma demonstração.\n\n` +
+            `Nome: ${name}\n` +
+            `E-mail: ${email}\n` +
+            `Empresa: ${company || "Não informado"}\n` +
+            `Telefone: ${phone}`
+        );
+
+        // Link do WhatsApp Web
+        let linkWhatsApp = `https://wa.me/${5567996298263}?text=${mensagem}`;
+
+        // Abre o WhatsApp Web ou app no celular
+        window.open(linkWhatsApp, "_blank");
+    }
+</script>
+
+
+
+
+
+</body>
+</html>
